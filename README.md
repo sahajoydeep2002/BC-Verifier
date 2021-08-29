@@ -1,13 +1,13 @@
-# BTCert
-BTCert authenticates academic certificates by means of a digital receipt that allows immediate verification by third parties. BTCert is inspired by the open source project [Blockcerts](https://www.blockcerts.org/). As in Blockcerts, BTCert issues a digital credential by sending a Bitcoin transaction from the awarding institution to the recipient/certificate owner. As illustrated in Figure 1, a set of hash value of certificates would be attached to the Bitcoin transaction when Alice paid 5 BTC to Tom. By the design of BTCert, Alice replaces the note "thank you" by the Merkle root corresponding a group of certificates. Then, BTCert allows an independent verifier to check the authenticity of such certificates by retreiving the hash value from the Bitcoin blockchain and comparing it to the local receipt.
+# BC Verifier
+BC Verifier authenticates academic certificates by means of a digital receipt that allows immediate verification by third parties. BC Verifier is inspired by the open source project [Blockcerts](https://www.blockcerts.org/). As in Blockcerts, BC Verifier issues a digital credential by sending a Bitcoin transaction from the awarding institution to the recipient/certificate owner. As illustrated in Figure 1, a set of hash value of certificates would be attached to the Bitcoin transaction when Alice paid 5 BTC to Tom. By the design of BC Verifier, Alice replaces the note "thank you" by the Merkle root corresponding a group of certificates. Then, BC Verifier allows an independent verifier to check the authenticity of such certificates by retreiving the hash value from the Bitcoin blockchain and comparing it to the local receipt.
 
 ![](src/main/resources/static/images/metaphor.png)
-*Figure 1. Working mechanism of BTCerts/Blockcerts*
+*Figure 1. Working mechanism of BC Verifiers/Blockcerts*
 
-BTCert uses additional cryptographic techniques to improve robustness and availability of the credentials issuing operation. BTCert uses multiple signatures to improve on the security of digital credentials issuing. BTCert adds a revocation mechanism based on BTC address to revoke a certificate more reliably, and establishing a secure federated identity aimed at verifying the awarding institution's identity. The core cryptographic parts of BTCert are implemented in JavaScript, which made it possible to handle all the sensitive data on the client side (browser). In other words, BTCert never transfers nor stores any sensitive data such as private keys on the server side.
+BC Verifier uses additional cryptographic techniques to improve robustness and availability of the credentials issuing operation. BC Verifier uses multiple signatures to improve on the security of digital credentials issuing. BC Verifier adds a revocation mechanism based on BTC address to revoke a certificate more reliably, and establishing a secure federated identity aimed at verifying the awarding institution's identity. The core cryptographic parts of BC Verifier are implemented in JavaScript, which made it possible to handle all the sensitive data on the client side (browser). In other words, BC Verifier never transfers nor stores any sensitive data such as private keys on the server side.
 
 ## Prototype workflow
-For helping the readers to have a better understanding of BTCert, we created a prototype model workflow from four primary roles, including student, checker, issuer, system and employer. The prototype workflow is shown in figure 2 below.
+For helping the readers to have a better understanding of BC Verifier, we created a prototype model workflow from four primary roles, including student, checker, issuer, system and employer. The prototype workflow is shown in figure 2 below.
 ![](src/main/resources/static/images/workflowPrototype.png)
 *Figure 2. Workflow of prototype.* 
 
@@ -66,9 +66,9 @@ Figure 5 maps out the high-level data flow diagram. It shows that the data flow 
 ├── app.log
 └── src
     ├── main
-    │   ├── java
-    │   │   └──  org.bham.btcert
-    │   │   		└── config
+    │   ├── java
+    │   │   └──  org.bham.BC Verifier
+    │   │   		└── config
     │   │           └── controller
     │   │           └── exception
     │   │           └── filter
@@ -77,14 +77,14 @@ Figure 5 maps out the high-level data flow diagram. It shows that the data flow 
     │   │           └── service
     │   │           └── utils
     │   │           └── StartApplication.java
-    │   └── resources
-    │       └── config
+    │   └── resources
+    │       └── config
     │       └── static
     │       └── templates
     │       └── application.properties
     └── test
         └── java
-            └──  org.bham.btcert
+            └──  org.bham.BC Verifier
 ```
 
 **Project prerequisites:**  
@@ -98,27 +98,10 @@ Maven: Maven 3.3
 2. Import the code from repository  
 3. Switch to directory  
 4. Start the project without Docker  
->Cd /BTCert  
+>Cd /BC Verifier  
 > mvn package && java -jar target/Boot-0.0.1-SNAPSHOT.jar  
 > nohup java -jar target/Boot-0.0.1-SNAPSHOT.jar &  
 5. Start the project with Docker  
 > mvn package docker:build  
 > docker images  
 > docker run image_name:tag_name  
-
-## System resource 
-**Project screenshots:**  
-![](src/main/resources/static/images/org.png)
-![](src/main/resources/static/images/admin.jpg)
-![](src/main/resources/static/images/student.jpg)
-![](src/main/resources/static/images/login.png)
-![](src/main/resources/static/images/home.png)
-
-Project home page: http://www.btcert.org/  
-Intranet home page: https://btcert.com  
-Public verifying page: https://btcert.com/verify       
-Intranet login page: https://btcert.com/login  
-
-## Futrue work
-As  [The Telegraph](http://www.telegraph.co.uk/investing/news/bitcoin-transaction-fees-have-become-high/) reported, Bitcoin transaction fees have skyrocketed in the past, with a typical transaction costing up to £15. In the future BTCert may replace the bitcoin blockchain infrastructure by using Ethereum or Hyperledger to avoid high transaction fees.
-
